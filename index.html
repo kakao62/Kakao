@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audio-Player</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.8rem;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 24px;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    audio {
+      width: 100%;
+      outline: none;
+      border-radius: 12px;
+    }
+    .error {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255, 0, 0, 0.2);
+      font-size: 0.9rem;
+      display: none;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Audio-Player</h1>
+    <p>Deine Geschichte zum Anhören</p>
+    <audio id="player" controls preload="metadata">
+      <source src="audio.mp3" type="audio/mpeg" />
+      Dein Browser unterstützt den Audio‑Player leider nicht.
+    </audio>
+    <div id="error" class="error">
+      ⚠️ Die Datei <strong>audio.mp3</strong> wurde nicht gefunden.<br />
+      Bitte stelle sicher, dass sie im gleichen Ordner liegt und exakt so heißt (Groß-/Kleinschreibung beachten).
+    </div>
+    <div class="footer">
+      Diese Seite dient zum Anhören der Audiodatei.
+    </div>
+  </div>
+  <script>
+    const audio = document.getElementById('player');
+    const errorBox = document.getElementById('error');
+    audio.addEventListener('error', () => {
+      errorBox.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
